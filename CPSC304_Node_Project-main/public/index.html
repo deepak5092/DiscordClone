@@ -1,0 +1,251 @@
+<!-- This code is been made using help of CPSC 304 node starter code https://github.students.cs.ubc.ca/CPSC304/CPSC304_Node_Project/ -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <!-- This meta tag ensures that the website renders correctly across different device sizes, enhancing mobile responsiveness. -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Link to the external CSS stylesheet. Uncomment if you wish to customize or add styling. -->
+    <!-- <link rel="stylesheet" href="styles.css">   -->
+
+    <title>Database Application</title>
+</head>
+<body>
+
+    <!-- ===================================================================================== -->
+    <!-- Display the current status of the database connection. 
+         !!HERE TO HELP U DEBUGGING, NOT REQUIRED IN YOUR OWN PROJECT!!
+         -->
+    <h1>Database Connection Status: 
+        <!-- An in-line placeholder to display connection status. -->
+        <span id="dbStatus"> </span>
+        <!-- A loading GIF, will be hided once get the status. -->
+        <img id="loadingGif" class="loading-gif" src="loading_100px.gif" alt="Loading...">
+    </h1>
+
+    <br><hr><br> <!-- ========================================================================= -->
+
+    <!-- Show 'ServerTable'. 
+        Data will be fetched and inserted here dynamically using JavaScript. -->
+    <h2>Show Servers</h2>
+    <table id="demotable" border="1">
+        <thead>
+            <tr>
+                <!--Table head, need to be adjusted accordingly to align with your own.-->
+                <th>ID</th>
+                <th>Name</th>
+            </tr>
+        </thead>
+        <tbody>
+        </tbody>
+    </table>
+    <br>
+
+    <br><hr><br> <!-- ========================================================================= -->
+    <!-- Show 'User's server'. 
+        Data will be fetched and inserted here dynamically using JavaScript. -->
+        <h2>Show joined Servers of a user</h2>
+        <table id="jointable" border="1">
+            <thead>
+                <tr>
+                    <!--Table head, need to be adjusted accordingly to align with your own.-->
+                    <th>user</th>
+                    <th>server</th>
+                    <th>rolename</th>
+                    <th>rolecolour</th>
+                </tr>
+            </thead>
+            <tbody>
+            </tbody>
+        </table>
+
+        <h2> Add user to a server </h2>
+        <form id="addServer">
+            ID: <input type="number" id="addId" placeholder="Enter Server ID" required> <br><br>
+            Name: <input type="text" id="addUserName" placeholder="Enter User Name" required maxlength="20"> <br><br>
+
+            <button type="submit"> add </button> <br>
+        </form>
+        <div id="ResultOfAdd"></div>
+
+        <h2> Remove user from a server </h2>
+        <form id="removeServer">
+            ID: <input type="number" id="removeId" placeholder="Enter Server ID" required> <br><br>
+            Name: <input type="text" id="removeUserName" placeholder="Enter User Name" required maxlength="20"> <br><br>
+
+            <button type="submit"> remove </button> <br>
+        </form>
+        <div id="ResultOfRemove"></div>
+
+        <h2> Update user role for a server </h2>
+        <form id="updateRole">
+            ID: <input type="number" id="updateId" placeholder="Enter Server ID" required> <br><br>
+            User name: <input type="text" id="updatename" placeholder="Enter User name" required> <br><br>
+            Role name: <input type="text" id="rolename" placeholder="Enter Role Name" required> <br><br>
+            Role colour: <input type="text" id="rolecolour" placeholder="Enter Role Colour" required maxlength="20"> <br><br>
+
+            <button type="submit"> Update </button> <br>
+        </form>
+        <div id="ResultOfUpdate"></div>
+    <br><hr><br> <!-- ========================================================================= -->
+    
+    <h2>Show Text Channels of a server</h2>
+        <table id="textChannelTable" border="1">
+            <thead>
+                <tr>
+                    <!--Table head, need to be adjusted accordingly to align with your own.-->
+                    <th>ID</th>
+                    <th>Name</th>
+                </tr>
+            </thead>
+            <tbody>
+            </tbody>
+        </table>
+
+        <h2> Retrive text channels from a server </h2>
+        <form id="getTextChannel">
+            Link: <input type="text" id="getTextServerLink" placeholder="Enter Server Link" required> <br><br>
+            
+            <button type="submit"> get </button> <br>
+        </form>
+        <div id="ResultOfGetTextChannel"></div>
+
+        <h2>Show Voice Channels of a server</h2>
+        <table id="voiceChannelTable" border="1">
+            <thead>
+                <tr>
+                    <!--Table head, need to be adjusted accordingly to align with your own.-->
+                    <th>ID</th>
+                    <th>Name</th>
+                </tr>
+            </thead>
+            <tbody>
+            </tbody>
+        </table>
+
+        <h2> Retrive Voice channels from a server </h2>
+        <form id="getVoiceChannel">
+            Link: <input type="text" id="getVoiceServerLink" placeholder="Enter Server Link" required> <br><br>
+            <button type="submit"> get </button> <br>
+        </form>
+        <div id="ResultOfGetVoiceChannel"></div>
+
+    <br><hr><br> <!-- ========================================================================= -->
+    
+    <h2>Retreive Search results server</h2>
+        <table id="searchServerTable" border="1">
+            <thead>
+                <tr>
+                    <!--Table head, need to be adjusted accordingly to align with your own.-->
+                    <th>ID</th>
+                    <th>Name</th>
+                </tr>
+            </thead>
+            <tbody>
+            </tbody>
+        </table>
+    <br>
+    <form id="searchServer">
+        ID: <input type="number" id="sidSearch" placeholder="Enter Server ID" required> <br><br>
+        condition: <select id="query"> <option id="AND"> AND </option> <option id="OR"> OR </option> </select> <br><br>
+        Name: <input type="text" id="nameSearch" placeholder="Enter User Name" required maxlength="20"> <br><br>
+
+        <button type="submit"> Search </button> <br>
+    </form>
+    <div id="ResultOfSearch"></div>
+    <br><hr><br> <!-- ========================================================================= -->
+
+    <h2>Filter Search results of Server by number of users</h2>
+        <table id="filterServerTable" border="1">
+            <thead>
+                <tr>
+                    <!--Table head, need to be adjusted accordingly to align with your own.-->
+                    <th>ID</th>
+                    <th>Users</th>
+                </tr>
+            </thead>
+            <tbody>
+            </tbody>
+        </table>
+    <br>
+
+    <form id="getNumUsers">
+        <p>Get the data for number of users for each server. Note: Press this button before filter</p>
+        <button type="submit"> Results </button> <br>
+    </form>
+    <div id="ResultOfGetNumUsers"></div>
+
+    <form id="filterServers">
+        <p> Get Servers that have more number of users than numUsers </p>
+        numUsers: <input type="number" id="filterNumUsers" placeholder="Enter Number of Users" required> <br><br>
+        <button type="submit"> filter </button> <br>
+    </form>
+    <div id="ResultOfFilterServers"></div>
+
+    <h2>List of Perfect Servers</h2>
+        <table id="perfectServerTable" border="1">
+            <thead>
+                <tr>
+                    <!--Table head, need to be adjusted accordingly to align with your own.-->
+                    <th>ID</th>
+                    <th>Name</th>
+                </tr>
+            </thead>
+            <tbody>
+            </tbody>
+        </table>
+    <br>
+
+    <form id="getPerfectServers">
+        <p> Click this button to find our Perfect Servers. These are the servers with ALL the users! </p>
+        <button type="submit"> Perfect Servers </button> <br>
+    </form>
+    <div id="ResultOfPerfectServers"></div>
+    <br><hr><br> <!-- ========================================================================= -->
+
+    <!-- <h2>Reset Demotable</h2>
+    <p>If you wish to reset the table press on the reset button. If this is the first time you're running this page, you MUST use reset</p>
+    <button id="resetDemotable"> reset </button> <br> -->
+    <!-- A placeholder to display messages related to the reset operation. -->
+    <!-- <div id="resetResultMsg"></div> -->
+
+    <!-- <br><hr><br>  -->
+    <!-- ========================================================================= -->
+
+    <!-- <h2> Insert Values into DemoTable </h2>
+    <form id="insertDemotable">
+        ID: <input type="number" id="insertId" placeholder="Enter ID" required> <br><br>
+        Name: <input type="text" id="insertName" placeholder="Enter Name" maxlength="20"> <br><br>
+
+        <button type="submit"> insert </button> <br>
+    </form>
+    <div id="insertResultMsg"></div> -->
+
+    <!-- ========================================================================= -->
+
+    <!-- <h2>Update Name in DemoTable</h2>
+    <p>The values are case sensitive and if you enter in the wrong case, the update statement will not do anything.</p>
+    <form id="updataNameDemotable">
+        Old Name: <input type="text" id="updateOldName" placeholder="Enter Old Name" required> <br><br>
+        New Name: <input type="text" id="updateNewName" placeholder="Enter New Name" maxlength="20"> <br><br>
+
+        <button type="submit"> update </button> <br>
+    </form> -->
+    <!-- A placeholder to display messages related to the update operation. -->
+    <!-- <div id="updateNameResultMsg"></div> -->
+
+    <!-- <br><hr><br>  -->
+    <!-- ========================================================================= -->
+
+    <!-- <h2>Count the Tuples in DemoTable</h2>
+    <button id="countDemotable"> count </button> <br><br> -->
+    <!-- A placeholder to display the count result. -->
+    <!-- <div id="countResultMsg"></div> <br> -->
+
+    <!-- ===================================================================================== -->
+    <!-- External JavaScript file that contains the functionality/logic for the operations above. -->
+    <script src="scripts.js"></script>
+</body>
+</html>
